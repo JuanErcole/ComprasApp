@@ -1,6 +1,6 @@
 import React from 'react';
 import { TodoList } from '../TodoList'
-import { EmptySearchResult} from '../EmptySearchResult'
+import { EmptySearchResult } from '../EmptySearchResult'
 import { TodoItem } from '../TodoItem';
 import { TodosError } from '../TodosError';
 import { TodosLoading } from '../TodosLoading';
@@ -12,24 +12,35 @@ import { TodoHeader } from '../TodoHeader';
 import { TodoCounter } from '../TodoCounter';
 import { TodoSearch } from '../TodoSearch';
 import { useTodos } from '../hooks/useTodos';
+import { ChangeAlert } from '../ChangeAlert';
 
 
 function App() {
 
+  const { states, stateUpdaters  } = useTodos();
+
   const {
-    error,
+
     loading,
-    searchedTodos,
-    completeTodo,
-    deleteTodo,
-    openModal,
-    setOpenModal,
+    error,
     totalTodos,
     completedTodos,
     searchValue,
+    searchedTodos,
+    completeTodo,
+    openModal,
+
+  } = states;
+
+  const {
+
     setSearchValue,
-    addTodo
-  } = useTodos();
+    addTodo,
+    deleteTodo,
+    setOpenModal,
+    sincronizedTodos
+    
+  } = stateUpdaters;
 
   return (
     <React.Fragment>
@@ -38,13 +49,13 @@ function App() {
         <TodoCounter
           totalTodos={totalTodos}
           completedTodos={completedTodos}
-          // loading={loading}
+        // loading={loading}
         />
 
         <TodoSearch
           searchValue={searchValue}
           setSearchValue={setSearchValue}
-          // loading={loading}
+        // loading={loading}
         />
       </TodoHeader>
 
@@ -82,6 +93,11 @@ function App() {
       <CreateTodoButton
         setOpenModal={setOpenModal}
       />
+
+      <ChangeAlert
+        sincronize={sincronizedTodos}
+      />
+
     </React.Fragment>
   );
 }
