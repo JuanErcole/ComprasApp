@@ -3,9 +3,9 @@ import { useTodos } from '../hooks/useTodos';
 import './TodoForm.css';
 import { useNavigate } from 'react-router-dom';
 
-function TodoForm({ submitEvent, label, submitText }) {
+function TodoForm({ submitEvent, label, submitText, defoultTodoText='' }) {
 
-  const [newTodoValue, setNewTodoValue] = React.useState('');
+  const [newTodoValue, setNewTodoValue] = React.useState(defoultTodoText);
   
   const navigate = useNavigate();
 

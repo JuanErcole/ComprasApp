@@ -10,8 +10,12 @@
 }
 
 .todoItemContent{
+  overflow: hidden;
   display: flex;
   align-items: center;
+}
+.todoItemContent p{
+  width: 100%;
 }
 
 .TodoItem-p {
