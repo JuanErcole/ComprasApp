@@ -39,6 +39,7 @@ export const HomePage = () => {
 
     setSearchValue,
     // addTodo,
+    editTodo,
     deleteTodo,
     // setOpenModal,
     sincronizedTodos
@@ -77,6 +78,7 @@ export const HomePage = () => {
             text={todo.text}
             completed={todo.completed}
             onComplete={() => completeTodo(todo.id)}
+            onEdit={()=> navigate(`/edit/${todo.id}`)}
             onDelete={() => deleteTodo(todo.id)}
           />
         )}

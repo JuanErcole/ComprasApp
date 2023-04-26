@@ -1,8 +1,6 @@
 import React from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
-const TodoContext = React.createContext();
-
 function useTodos() {
 
   const {
@@ -14,7 +12,7 @@ function useTodos() {
   } = useLocalStorage('TODOS_V2', []);
 
   const [searchValue, setSearchValue] = React.useState('');
-  const [openModal, setOpenModal] = React.useState(false);
+  // const [openModal, setOpenModal] = React.useState(false);
 
   const completedTodos = todos.filter(todo => !!todo.completed).length;
   const totalTodos = todos.length;
@@ -52,6 +50,13 @@ function useTodos() {
     saveTodos(newTodos);
   };
 
+  const editTodo = (id, newText) => {
+    const todoIndex = todos.findIndex(todo => todo.id === id);
+    const newTodos = [...todos];
+    newTodos[todoIndex].text = newText;
+    saveTodos(newTodos);
+  };
+
   const deleteTodo = (id) => {
     const todoIndex = todos.findIndex(todo => todo.id === id);
     const newTodos = [...todos];
@@ -67,14 +72,15 @@ function useTodos() {
     searchValue,
     searchedTodos,
     completeTodo,
-    openModal,
+    // openModal,
   }
 
   const stateUpdaters = {
     setSearchValue,
+    editTodo,
     addTodo,
     deleteTodo,
-    setOpenModal,
+    // setOpenModal,
     sincronizedTodos
   }
 
